@@ -1,0 +1,942 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UniMall LPU | Shopping & Food</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        /* NAVBAR */
+        header {
+            background: linear-gradient(90deg, #4b0082, #7b1fa2);
+            color: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(55, 0, 90, 0.78),
+                    rgba(55, 0, 90, 0.78)
+                ),
+                url("https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #ffd700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #ffd700;
+            color: #4b0082;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        /* SEARCH */
+        .search {
+            text-align: center;
+            padding: 35px 20px;
+            background: white;
+        }
+
+        .search input {
+            width: 80%;
+            max-width: 650px;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        /* SECTION */
+        section {
+            padding: 70px 7%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 38px;
+            color: #5810a0;
+            margin-bottom: 40px;
+        }
+
+        /* SHOP CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card h3 {
+            color: #6a0dad;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .small-btn {
+            background: #6a0dad;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .small-btn:hover {
+            background: #8e2de2;
+        }
+
+        /* LOVELY SWEETS */
+        .lovely-sweets {
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f6,
+                    #fff8dc
+                );
+        }
+
+        .sweet-highlight {
+            max-width: 1100px;
+            margin: auto;
+            background: rgb(251, 250, 250);
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .sweet-highlight img {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            object-fit: cover;
+        }
+
+        .sweet-info {
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sweet-info h2 {
+            color: #d63384;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .sweet-info p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .sweet-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .sweet-list li {
+            margin: 10px 0;
+            font-size: 17px;
+        }
+
+        /* OFFERS */
+        .offers {
+            background: linear-gradient(135deg, #4b0082, #9c27b0);
+        }
+
+        .offers .title {
+            color: white;
+        }
+
+        .offer-box {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .offer {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 18px;
+        }
+
+        .offer h3 {
+            color: #6a0dad;
+            margin-bottom: 12px;
+        }
+
+        .discount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e63946;
+            margin: 15px;
+        }
+
+        /* FOOD */
+        .food-card {
+            text-align: center;
+        }
+
+        /* ABOUT */
+        .about {
+            background: white;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 850px;
+            margin: auto;
+            color: #555;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-form {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #250044;
+            color: white;
+            text-align: center;
+            padding: 35px;
+        }
+
+        footer h2 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin: 7px;
+            color: #ddd;
+        }
+
+        /* MOBILE */
+        @media(max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                margin: 5px;
+                display: inline-block;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .sweet-highlight {
+                grid-template-columns: 1fr;
+            }
+
+            .sweet-info {
+                padding: 30px;
+            }
+
+            .sweet-info h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+
+    <div class="logo">
+        Uni<span>Mall</span> LPU
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#shops">Shops</a>
+        <a href="#sweets">Lovely Sweets</a>
+        <a href="#offers">Offers</a>
+        <a href="#food">Food</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Welcome to
+            <span>UniMall</span>
+        </h1>
+
+        <p>
+            Your campus destination for shopping, food,
+            sweets, entertainment and student life at LPU.
+        </p>
+
+        <a href="#shops" class="btn">
+            Explore UniMall
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search shops and food..."
+        onkeyup="searchCards()"
+    >
+
+</div>
+
+
+<!-- SHOPS -->
+
+<section id="shops">
+
+    <h2 class="title">
+        🛍️ UniMall Shops
+    </h2>
+
+    <div class="cards">
+
+        <div class="card searchable">
+
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Fashion Hub</h3>
+
+                <p>
+                    Trendy clothes, shoes and accessories
+                    for LPU students.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="shopMessage('Fashion Hub')">
+                    View Shop
+                </button>
+
+            </div>
+        </div>
+
+
+        <div class="card searchable">
+
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Tech Zone</h3>
+
+                <p>
+                    Headphones, gadgets, chargers and
+                    technology accessories.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="shopMessage('Tech Zone')">
+                    View Shop
+                </button>
+
+            </div>
+        </div>
+
+
+        <div class="card searchable">
+
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Book Store</h3>
+
+                <p>
+                    Books, stationery, notebooks and
+                    study materials.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="shopMessage('Book Store')">
+                    View Shop
+                </button>
+
+            </div>
+        </div>
+
+
+        <div class="card searchable">
+
+            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Daily Needs</h3>
+
+                <p>
+                    Everyday essentials for comfortable
+                    campus living.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="shopMessage('Daily Needs')">
+                    View Shop 
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LOVELY SWEETS -->
+
+<section class="lovely-sweets" id="sweets">
+
+    <h2 class="title">
+        🍬 Featured at UniMall
+    </h2>
+
+    <div class="sweet-highlight">
+
+        <img
+            src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=80"
+            alt="Lovely Sweets">
+
+        <div class="sweet-info">
+
+            <h2>🍭 Lovely Sweets</h2>
+
+            <p>
+                Enjoy delicious sweets and desserts at
+                Lovely Sweets. A perfect place for students
+                to enjoy something sweet with friends.
+            </p>
+
+            <ul class="sweet-list">
+                <li> 🍰 Cakes & Pastries</li>
+                <li>🍬 Traditional Sweets</li>
+                <li>🍨 Ice Cream & Desserts</li>
+                <li>🎂 Birthday Cakes</li>
+                <li>🥤 Cold Drinks & Refreshments</li>
+            </ul>
+
+            <button
+                class="btn"
+                onclick="sweetMessage()">
+                Explore Lovely Sweets
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OFFERS -->
+
+<section class="offers" id="offers">
+
+    <h2 class="title">
+        🔥 Student Offers
+    </h2>
+
+    <div class="offer-box">
+
+        <div class="offer">
+
+            <h3>Lovely Sweets</h3>
+
+            <div class="discount">
+                20% OFF
+            </div>
+
+            <p>
+                Special student offer on selected
+                sweets and desserts.
+            </p>
+
+        </div>
+
+
+        <div class="offer">
+
+            <h3>Fashion Hub</h3>
+
+            <div class="discount">
+                30% OFF
+            </div>
+
+            <p>
+                Exclusive student discount on
+                selected fashion items.
+            </p>
+
+        </div>
+
+
+        <div class="offer">
+
+            <h3>Food Court</h3>
+
+            <div class="discount">
+                BUY 1 GET 1
+            </div>
+
+            <p>
+                Selected food items available
+                under the special student offer.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOD -->
+
+<section id="food">
+
+    <h2 class="title">
+        🍔 Food Court
+    </h2>
+
+    <div class="cards">
+
+        <div class="card food-card searchable">
+
+            <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Pizza Corner</h3>
+
+                <p>
+                    Fresh pizza, pasta and cheesy
+                    favourites.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="orderMessage('Pizza Corner')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card food-card searchable">
+
+            <img
+                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Burger House</h3>
+
+                <p>
+                    Delicious burgers, fries and
+                    refreshing drinks.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="orderMessage('Burger House')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card food-card searchable">
+
+            <img
+                src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80">
+
+            <div class="card-content">
+
+                <h3>Lovely Sweets</h3>
+
+                <p>
+                    Cakes, sweets, ice cream and
+                    delicious desserts.
+                </p>
+
+                <button
+                    class="small-btn"
+                    onclick="sweetMessage()">
+                    Order Sweets
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+    <h2 class="title">
+        🏫 About UniMall
+    </h2>
+
+    <p>
+        UniMall is a student-focused shopping and lifestyle
+        platform designed for the LPU campus community.
+        Students can discover shops, food outlets, special
+        offers and places such as Lovely Sweets from one
+        convenient website.
+    </p>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <h2 class="title">
+        📞 Contact UniMall
+    </h2>
+
+    <div class="contact-form">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Your Name">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Your Email">
+
+        <textarea
+            id="message"
+            placeholder="Write your message...">
+        </textarea>
+
+        <br><br>
+
+        <button
+            class="btn"
+            onclick="sendMessage()">
+            Send Message
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>UniMall LPU</h2>
+
+    <p>
+        Your Campus. Your Mall. Your Experience.
+    </p>
+
+    <p>
+        🍭 Lovely Sweets | 🛍️ Shopping | 🍔 Food
+    </p>
+
+    <p>
+        © 2026 UniMall LPU. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    // Shop button
+    function shopMessage(shop) {
+
+        alert(
+            "Welcome to " + shop +
+            "! 🛍️\n\n" +
+            "Shop details can be added here."
+        );
+
+    }
+
+
+    // Lovely Sweets
+    function sweetMessage() {
+
+        alert(
+            "🍭 Welcome to Lovely Sweets! 🍰\n\n" +
+            "Enjoy delicious sweets, cakes, pastries " +
+            "and desserts.\n\n" +
+            "Thank you for visiting UniMall LPU!"
+        );
+
+    }
+
+
+    // Food order
+    function orderMessage(food) {
+
+        alert(
+            "🍔 " + food +
+            "\n\n" +
+            "Online ordering can be connected " +
+            "to this button."
+        );
+
+    }
+
+
+    // Contact form
+    function sendMessage() {
+
+        let name =
+            document.getElementById("name").value;
+
+        if (name === "") {
+
+            alert("Please enter your name.");
+
+        } else {
+
+            alert(
+                "Thank you, " + name +
+                "! 📩\n\n" +
+                "Your message has been received."
+            );
+
+        }
+
+    }
+
+
+    // Search
+    function searchCards() {
+
+        let search =
+            document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+        let cards =
+            document.querySelectorAll(".searchable");
+
+        cards.forEach(function(card) {
+
+            let text =
+                card.innerText.toLowerCase();
+
+            if (text.includes(search)) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
